@@ -10,6 +10,10 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 导入axios插件
+import http from './libs/http'
+Vue.use(http);
+
 
 new Vue({
   render: h => h(App),

@@ -51,8 +51,16 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        // alert('submit!');
-                        // console.log('success');
+                        this.$http.post("login", this.formData).then(res => {
+                            console.log(res);
+                            if (res.data.meta.status === 400){
+                                this.$message.error(res.data.meta.msg);
+                            }else {
+                                this.$message.success(res.data.meta.msg);
+                                window.sessionStorage.setItem('token', res.data.data.token);
+                                this.$router.push('/');
+                            }
+                        })
                     } else {
                         this.$message.error('请正确输入用户名和密码');
                         return false;
